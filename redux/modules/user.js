@@ -127,8 +127,8 @@ function applyLogIn(state, action) {
     };
 }
 
-async function applyLogOut(state, action) {
-    await AsyncStorage.clear();
+function applyLogOut(state, action) {
+    AsyncStorage.clear(); //TODO Error!
     return {
         ...state,
         isLoggedIn: false,
