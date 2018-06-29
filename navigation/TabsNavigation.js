@@ -67,18 +67,18 @@ const TabsNavigation = createBottomTabNavigator(
         }
     },
     {   //TabBar Customizing
-        tabBarComponent: ({...props, navigation,jumpTo}) => (
-            <TabBarBottom
-                {...props}
-                getOnPress={(index) => {
-                    if(index === 2){
-                        return navigation.navigate("TakePhoto")
-                    } else {
-                        return jumpTo(index)
-                    }
-                }}
-            />
-        ),
+        // tabBarComponent: ({...props, navigation,jumpTo}) => (
+        //     <TabBarBottom
+        //         {...props}
+        //         getOnPress={(index) => {
+        //             if(index === 2){
+        //                 return navigation.navigate("TakePhoto")
+        //             } else {
+        //                 return jumpTo(index)
+        //             }
+        //         }}
+        //     />
+        // ),
         tabBarOptions: {
             showLabel: false,
             style: {

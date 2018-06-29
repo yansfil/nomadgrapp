@@ -5,7 +5,8 @@ const mapStateToProps = (state, ownProps) => {
     const { user } = state;
     console.log('second ', state);
     return {
-        isLoggedIn: user.isLoggedIn
+        isLoggedIn: user.isLoggedIn,
+        profile: user.profile
     };
 };
 
