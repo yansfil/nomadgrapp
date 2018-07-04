@@ -14,6 +14,7 @@ class Container extends Component {
         fbLogin: PropTypes.func.isRequired
     }
     render() {
+        console.log(this.props)
         return (
             <LogInScreen
                 {...this.state}

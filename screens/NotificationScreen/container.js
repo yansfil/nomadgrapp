@@ -19,7 +19,6 @@ class Container extends Component {
     };
 
     render() {
-        console.log(this.props)
         return (
             <NotificationScreen {...this.props} {...this.state} refresh={this._refresh} />
         );

@@ -80,7 +80,8 @@ function facebookLogin() {
                 post_count: 0,
                 profile_image: null,
                 username: "hoyeon",
-                website: null
+                website: null,
+                is_self : true
             }
         }
 
@@ -175,20 +176,43 @@ function getNotifications() {
 function getOwnProfile() {
     return (dispatch, getState) => {
         const json = {
-            token: "abcdefg",
-            user: {
-                bio: null,
-                followers_count: 0,
-                following_count: 4,
-                images: [],
-                name: "",
-                post_count: 0,
-                profile_image: null,
-                username: "hoyeon",
-                website: null
+            bio: null,
+            followers_count: 3,
+            following_count: 4,
+            images: [],
+            name: "hoyeon",
+            post_count: 5,
+            profile_image: null,
+            username: "hoyeon",
+            website: null,
+            is_self: true,
+            images: [{
+                id: 1,
+                file: "",
+                creator:{},
+                comments:[],
+                natural_time : ""
+            }, {
+                id: 2,
+                file: "",
+                creator:{},
+                comments:[],
+                natural_time : ""
+            }, {
+                id: 3,
+                file: "",
+                creator:{},
+                comments:[],
+                natural_time : ""
+            }, {
+                id: 4,
+                file: "",
+                creator:{},
+                comments:[],
+                natural_time : ""
             }
+            ]
         }
-        const {user: {token, profile: {username}}} = getState()
         dispatch(setUser(json))
     }
 }
@@ -205,7 +229,7 @@ function followUser(userId) {
         username: "orang",
         website: null
     }
-    return (dispatch, getState) =>{
+    return (dispatch, getState) => {
         return true
     }
 }

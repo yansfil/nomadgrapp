@@ -44,7 +44,8 @@ function getFeed() {
             id: 1,
             creator: {
                 profile_image: "../../assets/dummy/hoyeon.jpg",
-                username: "이호연"
+                username: "이호연",
+                following: 5
             },
             location: "Seoul, Korea",
             file: "1",
@@ -193,7 +194,6 @@ function likePhoto(photoId){
             }
             return item
         })
-        console.log(updatedFeed)
         dispatch(setlike(updatedFeed))
 
         // return true

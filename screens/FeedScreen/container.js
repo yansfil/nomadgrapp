@@ -21,6 +21,7 @@ class Container extends Component {
     };
 
     render() {
+        console.log(this.props)
         return (
            <FeedScreen {...this.props} {...this.state} refresh={this._refresh} />
         );

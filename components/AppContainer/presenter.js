@@ -12,13 +12,13 @@ class AppContainer extends Component {
     };
     componentDidMount(){
         const {isLoggedIn, initApp} = this.props
+        console.log(isLoggedIn)
         if(isLoggedIn){
             initApp()
         }
     }
     render() {
         const { isLoggedIn, profile } = this.props;
-
         return (
             <View style={styles.container}>
                 <StatusBar hidden={false} />
