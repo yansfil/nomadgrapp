@@ -15,7 +15,6 @@ class App extends React.Component {
     };
     render() {
         const { isLoadingComplete } = this.state;
-        console.log('first ',store.getState())
         if (!isLoadingComplete) {
             return (
                 <AppLoading

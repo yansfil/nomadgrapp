@@ -1,6 +1,22 @@
-import React from "react";
-import {View, Text} from "react-native"
+import {connect} from "react-redux"
+import Container from "./container"
+import {actionCreators as photoActions} from "../../redux/modules/photos"
+const mapStateToProps = (state, ownProps) => {
+    const {photos : {search}} = state
+    return {
+        search
+    }
+}
 
-const SearchScreen = props => <Text>Upload Photo</Text>;
+const mapDispatchToProps = (dispatch,ownProps) => {
+    return {
+        getEmptySearch: () => {
+            dispatch(photoActions.getSearch())
+        },
+        searchHashtag: (hashtag) => {
+            dispatch(photoActions.searchByHashtag(hashtag))
+        }
+    }
+}
 
-export default SearchScreen
+export default connect(mapStateToProps,mapDispatchToProps)(Container)

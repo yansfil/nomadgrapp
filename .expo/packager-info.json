@@ -1,8 +1,8 @@
 {
   "expoServerPort": 19000,
-  "packagerPort": 19002,
-  "packagerPid": 5612,
+  "packagerPort": 19001,
+  "packagerPid": 80215,
   "expoServerNgrokUrl": "https://gt-huf.hoyeon.nomadgrapp.exp.direct",
   "packagerNgrokUrl": "https://packager.gt-huf.hoyeon.nomadgrapp.exp.direct",
-  "ngrokPid": 5642
+  "ngrokPid": 80252
 }

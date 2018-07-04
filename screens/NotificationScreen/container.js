@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import FeedScreen from "./presenter";
-import { Image,Text } from "react-native";
-import NavButton from "../../components/NavButton";
+import NotificationScreen from "./presenter";
 
 class Container extends Component {
     static propTypes = {
-        feed: PropTypes.array,
-        getFeed: PropTypes.func.isRequired
+        notifications: PropTypes.array,
+        getNotifications: PropTypes.func.isRequired
     };
     state = {
         isFetching: false
@@ -21,16 +19,17 @@ class Container extends Component {
     };
 
     render() {
+        console.log(this.props)
         return (
-           <FeedScreen {...this.props} {...this.state} refresh={this._refresh} />
+            <NotificationScreen {...this.props} {...this.state} refresh={this._refresh} />
         );
     }
     _refresh = () => {
-        const { getFeed } = this.props;
+        const { getNotifications } = this.props;
         this.setState({
             isFetching: true
         });
-        getFeed();
+        getNotifications()
     };
 }
 

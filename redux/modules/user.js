@@ -6,6 +6,7 @@ import {Facebook} from "expo"
 const LOG_IN = "LOG_IN";
 const LOG_OUT = "LOG_OUT";
 const SET_USER = "SET_USER";
+const SET_NOTIFICATION = "SET_NOTIFICATION";
 
 // Action Creators
 
@@ -16,7 +17,7 @@ function setLogIn(token) {
     };
 }
 
-function setLogOut() {
+function logOut() {
     return {type: LOG_OUT};
 }
 
@@ -25,6 +26,13 @@ function setUser(user) {
         type: SET_USER,
         user
     };
+}
+
+function setNotifications(notifications) {
+    return {
+        type: SET_NOTIFICATION,
+        notifications
+    }
 }
 
 // API Actions (Only Local for me!!)
@@ -39,7 +47,7 @@ function login(username, password) {
             name: "",
             post_count: 0,
             profile_image: null,
-            username: "nomadmin",
+            username: "hoyeon",
             website: null
         }
     }
@@ -71,7 +79,7 @@ function facebookLogin() {
                 name: "",
                 post_count: 0,
                 profile_image: null,
-                username: "nomadmin",
+                username: "hoyeon",
                 website: null
             }
         }
@@ -80,8 +88,7 @@ function facebookLogin() {
             FB_APP_ID,
             {permissions: ["public_profile", "email"]}
         );
-        console.log(type,token)
-        if(type === "success"){
+        if (type === "success") {
             if (json.user && json.token) {
                 dispatch(setLogIn(json.token));
                 dispatch(setUser(json.user));
@@ -89,9 +96,134 @@ function facebookLogin() {
             } else {
                 return false
             }
-        }else{
+        } else {
             return false
         }
+    }
+}
+
+function getNotifications() {
+    return (dispatch, getState) => {
+        const json = [{
+            comment: "Hello1",
+            created_at: "2016-11-28",
+            creator: {
+                followers_count: 10,
+                following: true,
+                following_count: 25,
+                id: 3,
+                name: "Jeongwook You",
+                username: "jeongnong",
+                post_count: 2,
+                profile_image: "",
+                website: null
+            },
+            id: 1,
+            image: {
+                file: ""
+            },
+            notification_type: "like",
+            to: 1,
+            updated_at: "2016-11-29"
+        }, {
+            comment: "Hello2",
+            created_at: "2016-10-28",
+            creator: {
+                followers_count: 5,
+                following: false,
+                following_count: 10,
+                id: 2,
+                name: "Jihwan Seo",
+                username: "seoji",
+                post_count: 2,
+                profile_image: "",
+                website: null
+            },
+            id: 2,
+            image: {
+                file: ""
+            },
+            notification_type: "comment",
+            to: 1,
+            updated_at: "2016-10-29"
+        }, {
+            comment: "Hello3",
+            created_at: "2016-12-28",
+            creator: {
+                followers_count: 1,
+                following: false,
+                following_count: 1,
+                id: 4,
+                name: "Hansaem You",
+                username: "HanSaek",
+                post_count: 2,
+                profile_image: "",
+                website: null
+            },
+            id: 3,
+            image: {
+                file: ""
+            },
+            notification_type: "follow",
+            to: 1,
+            updated_at: "2016-12-29"
+        }]
+        dispatch(setNotifications(json))
+    }
+}
+
+function getOwnProfile() {
+    return (dispatch, getState) => {
+        const json = {
+            token: "abcdefg",
+            user: {
+                bio: null,
+                followers_count: 0,
+                following_count: 4,
+                images: [],
+                name: "",
+                post_count: 0,
+                profile_image: null,
+                username: "hoyeon",
+                website: null
+            }
+        }
+        const {user: {token, profile: {username}}} = getState()
+        dispatch(setUser(json))
+    }
+}
+
+function followUser(userId) {
+    const user = {
+        bio: null,
+        followers_count: 0,
+        following_count: 4,
+        images: [],
+        name: "hoyeon",
+        post_count: 0,
+        profile_image: null,
+        username: "orang",
+        website: null
+    }
+    return (dispatch, getState) =>{
+        return true
+    }
+}
+
+function unfollowUser(userId) {
+    const user = {
+        bio: null,
+        followers_count: 0,
+        following_count: 4,
+        images: [],
+        name: "hoyeon",
+        post_count: 0,
+        profile_image: null,
+        username: "orang",
+        website: null
+    }
+    return (dispatch, getState) => {
+        return true
     }
 }
 
@@ -111,6 +243,8 @@ function reducer(state = initialState, action) {
             return applyLogOut(state, action);
         case SET_USER:
             return applySetUser(state, action);
+        case SET_NOTIFICATION:
+            return applySetNotifications(state, action);
         default:
             return state;
     }
@@ -144,11 +278,25 @@ function applySetUser(state, action) {
     };
 }
 
+function applySetNotifications(state, action) {
+    const {notifications} = action;
+
+    return {
+        ...state,
+        notifications
+    }
+}
+
 // Exports
 
 const actionCreators = {
     login,
-    facebookLogin
+    facebookLogin,
+    logOut,
+    getNotifications,
+    getOwnProfile,
+    followUser,
+    unfollowUser
 };
 
 export {actionCreators};
